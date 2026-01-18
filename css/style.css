@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
-    background: linear-gradient(135deg, #7B0F1E 0%, #5A0B16 100%);
+    background: linear-gradient(135deg, #451722 0%, #5A0B16 100%);
     min-height: 100vh;
     padding: 15px;
     display: flex;
@@ -38,7 +38,7 @@ body {
 
 h1 {
     text-align: center;
-    color: #7B0F1E;
+    color: #451722;
     margin-bottom: 10px;
     font-size: 24px;
     font-weight: bold;
@@ -128,7 +128,7 @@ h1 {
     text-align: center;
     font-size: 32px;
     font-weight: bold;
-    color: #7B0F1E;
+    color: #451722;
     padding: 15px;
     background: #F5F5F5;
     border-radius: 10px;
@@ -139,7 +139,7 @@ h1 {
 
 .time-input:focus {
     outline: none;
-    border-color: #7B0F1E;
+    border-color: #451722;
     background: white;
 }
 
@@ -162,7 +162,7 @@ h1 {
 .check-btn {
     width: 100%;
     padding: 18px;
-    background: #7B0F1E;
+    background: #451722;
     color: white;
     border: none;
     border-radius: 12px;
@@ -195,7 +195,7 @@ h1 {
 
 .train-card {
     background: white;
-    border-left: 6px solid #7B0F1E;
+    border-left: 6px solid #451722;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 15px;
