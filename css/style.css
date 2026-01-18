@@ -172,7 +172,7 @@ h1 {
     transition: all 0.3s;
 }
 
-.check-btn:hover:not(:disabled) {
+.check-btn:hover: {
     background: #5A0B16;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(123, 15, 30, 0.3);
