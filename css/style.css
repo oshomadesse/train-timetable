@@ -206,12 +206,6 @@ h1 {
     }
 }
 
-@media (max-width: 480px) {
-    .train-card:hover {
-        transform: translateX(3px);
-    }
-}
-
 .train-card.kyoto {
     border-left-color: #00A040;
     background: linear-gradient(to right, #F5FFF9 0%, white 10%);
