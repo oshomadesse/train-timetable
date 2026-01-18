@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>阪急 梅田⇔十三 乗車案内</title>
+    <title>阪急 十三⇔梅田 乗車案内</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -12,6 +12,8 @@
         <div class="subtitle">梅田 ⇔ 十三</div>
 
         <div class="station-select">
+            <label for="station-input" class="station-label">出発駅</label>
+            <input type="station" id="station-input" class="station-input" value="">
             <button class="station-btn selected" id="juso-btn" onclick="selectStation('juso')">
                 十三
             </button>
