@@ -105,9 +105,9 @@ h1 {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
 .station-btn.selected {
-    border-color: #7B0F1E;
+    border-color: #656230;
     background: #FFF5F6;
-    color: #7B0F1E;
+    color: #656230;
 }
 
 .time-input-section {
