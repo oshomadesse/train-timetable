@@ -209,7 +209,7 @@ function checkTrains() {
     // 結果表示後、最下部10px上まで自動スクロール
     setTimeout(() => {
         window.scrollTo({
-            top: document.body.scrollHeight - 10,
+            top: document.body.scrollHeight - 20,
             behavior: 'smooth'
         });
     }, 80);
