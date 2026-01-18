@@ -247,6 +247,6 @@
     {"time":"23:30","line":"takarazuka","platform":"4","type":"急行","destination":"大阪梅田"},
     {"time":"23:39","line":"takarazuka","platform":"4","type":"普通","destination":"大阪梅田"},
     {"time":"23:45","line":"takarazuka","platform":"4","type":"普通","destination":"大阪梅田"},
-    {"time":"00:00","line":"takarazuka","platform":"4","type":"普通","destination":"大阪梅田"},
+    {"time":"00:00","line":"takarazuka","platform":"4","type":"普通","destination":"大阪梅田"}
   ]
 }
