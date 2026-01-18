@@ -1,5 +1,4 @@
 let selectedStation = 'juso';
-let selectedStation = 'umeda';
 let timetableData = null;
 
 // 平日/土日祝の判定
@@ -11,11 +10,11 @@ function getTimetableType() {
 
 // JSONファイルの読み込み
 async function loadTimetable() {
-    try {
-        const type = getTimetableType(); // 'weekday' or 'weekend'
-        const lines = ['kyoto', 'kobe', 'takarazuka'];
+    const type = getTimetableType(); // 'weekday' or 'weekend'
+    const lines = ['kyoto', 'kobe', 'takarazuka'];
 
-        // juso_to_umeda のデータを読み込み（3路線分を並列で取得）
+    try {
+        // juso_to_umeda
         const jusoToumedaPromises = lines.map(line =>
             fetch(`./data/juso_to_umeda/${line}_${type}.json`)
                 .then(res => {
@@ -30,7 +29,7 @@ async function loadTimetable() {
             .flat()
             .sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time));
 
-        // umeda_to_juso のデータを読み込み（3路線分を並列で取得）
+        // umeda_to_juso
         const umedaTojusoPromises = lines.map(line =>
             fetch(`./data/umeda_to_juso/${line}_${type}.json`)
                 .then(res => {
@@ -50,17 +49,13 @@ async function loadTimetable() {
             umeda_to_juso: umedaTojuso
         };
 
-        console.log(`時刻表データを読み込みました: ${type} (${jusoToUmeda.length}本)`);
+        console.log(`時刻表データを読み込みました: ${type} (十三→梅田 ${jusoToumeda.length}本 / 梅田→十三 ${umedaTojuso.length}本)`);
     } catch (error) {
         console.error('時刻表データの読み込みに失敗しました:', error);
-        alert('時刻表データの読み込みに失敗しました。');
-
-        console.log(`時刻表データを読み込みました: ${type} (${umedaTojuso.length}本)`);
-    } catch (error) {
-        console.error('時刻表データの読み込みに失敗しました:', error);
-        alert('時刻表データの読み込みに失敗しました。');
+        alert('時刻表データの読み込みに失敗しました。コンソールを確認してください。');
     }
 }
+
 
 // 路線情報
 const lineInfo = {
