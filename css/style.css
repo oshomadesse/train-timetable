@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
-    background: linear-gradient(135deg, #451722 0%, #5A0B16 100%);
+    background: #451722;
     min-height: 100vh;
     padding: 15px;
     display: flex;
@@ -106,7 +106,7 @@ h1 {
 
 .station-btn.selected {
     border-color: #656230;
-    background: #FFF5F6;
+    background: #FBF9F0;
     color: #656230;
 }
 

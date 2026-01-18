@@ -200,6 +200,14 @@ function checkTrains() {
 
     const nextFiveTrains = upcomingTrains.slice(0, 5);
     displayResults(nextFiveTrains);
+
+    // 結果表示後、最下部まで自動スクロール
+    setTimeout(() => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }, 100);
 }
 
 // 結果表示
