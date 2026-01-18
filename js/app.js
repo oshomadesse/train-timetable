@@ -9,14 +9,14 @@ function checkAuthStatus() {
         const currentTime = Date.now();
         const authTime = parseInt(authTimestamp, 10);
         const timeDiff = currentTime - authTime;
-        const twentyFourHours = 24 * 60 * 60 * 1000; // 24時間（ミリ秒）
+        const sevenDays = 7 * 24 * 60 * 60 * 1000; // 7日間（ミリ秒）
 
-        if (timeDiff < twentyFourHours) {
-            // 24時間以内なら認証有効
+        if (timeDiff < sevenDays) {
+            // 7日間以内なら認証有効
             hidePasswordOverlay();
             return true;
         } else {
-            // 24時間経過していたらログアウト
+            // 7日間経過していたらログアウト
             localStorage.removeItem('authTimestamp');
         }
     }
