@@ -1,3 +1,83 @@
+// ===== パスワード認証システム =====
+// TODO: Cloudflare WorkersのAPIエンドポイントURLをここに設定してください
+const API_URL = 'YOUR_CLOUDFLARE_WORKERS_API_URL_HERE';
+
+// 認証状態をチェック
+function checkAuthStatus() {
+    const authTimestamp = localStorage.getItem('authTimestamp');
+
+    if (authTimestamp) {
+        const currentTime = Date.now();
+        const authTime = parseInt(authTimestamp, 10);
+        const timeDiff = currentTime - authTime;
+        const twentyFourHours = 24 * 60 * 60 * 1000; // 24時間（ミリ秒）
+
+        if (timeDiff < twentyFourHours) {
+            // 24時間以内なら認証有効
+            hidePasswordOverlay();
+            return true;
+        } else {
+            // 24時間経過していたらログアウト
+            localStorage.removeItem('authTimestamp');
+        }
+    }
+
+    return false;
+}
+
+// パスワード認証
+async function checkPassword() {
+    const passwordInput = document.getElementById('passwordInput');
+    const errorElement = document.getElementById('passwordError');
+    const password = passwordInput.value;
+
+    if (!password) {
+        errorElement.textContent = 'パスワードを入力してください';
+        return;
+    }
+
+    // ローディング表示
+    errorElement.textContent = '認証中...';
+    errorElement.style.color = '#666';
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ password: password })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            // 認証成功
+            const currentTime = Date.now();
+            localStorage.setItem('authTimestamp', currentTime.toString());
+            hidePasswordOverlay();
+        } else {
+            // 認証失敗
+            errorElement.style.color = '#c41e3a';
+            errorElement.textContent = 'パスワードが正しくありません';
+            passwordInput.value = '';
+        }
+    } catch (error) {
+        console.error('認証エラー:', error);
+        errorElement.style.color = '#c41e3a';
+        errorElement.textContent = '認証に失敗しました。もう一度お試しください。';
+    }
+}
+
+// オーバーレイを非表示にする
+function hidePasswordOverlay() {
+    const overlay = document.getElementById('passwordOverlay');
+    if (overlay) {
+        overlay.style.display = 'none';
+    }
+}
+
+// ===== メインアプリケーション =====
 let selectedStation = 'juso';
 let timetableData = null;
 
@@ -153,6 +233,19 @@ function displayResults(trains) {
 
 // 初期化
 async function init() {
+    // 認証状態をチェック
+    checkAuthStatus();
+
+    // パスワード入力欄でEnterキー押下時にログイン実行
+    const passwordInput = document.getElementById('passwordInput');
+    if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    }
+
     await loadTimetable();
     setCurrentTime();
 
